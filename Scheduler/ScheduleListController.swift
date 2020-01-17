@@ -50,6 +50,13 @@ class ScheduleListController: UIViewController {
         fatalError("failed to access CreateEventController")
     }
     
+    // persist (save) to document directory
+    do {
+        try PersistenceHelper.save(item: createdEvent)
+    } catch {
+        print("Did not save the event: \(error)")
+    }
+    
     // insert new event into our events array
     // 1. update the data model e.g update the events array
     events.insert(createdEvent, at: 0) // top of the events array
