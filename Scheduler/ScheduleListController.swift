@@ -34,12 +34,28 @@ class ScheduleListController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    events = Event.getTestData().sorted { $0.date < $1.date }
+    // events = Event.getTestData().sorted { $0.date < $1.date }
     tableView.dataSource = self
-    
+    loadEvents()
     // print path to documents directory
     print(FileManager.getDocumentsDirectory())
   }
+    
+    private func loadEvents() {
+        do {
+            events = try PersistenceHelper.loadEvents().sorted {$0.date < $1.date}
+        } catch {
+            print("no events: \(error)")
+        }
+    }
+    
+    private func deleteEvent(index: IndexPath) {
+        do {
+            try PersistenceHelper.deleteEvents(index: index.row)
+        } catch {
+            print("\(error)")
+        }
+    }
   
   @IBAction func addNewEvent(segue: UIStoryboardSegue) {
     // caveman debugging
@@ -97,7 +113,7 @@ extension ScheduleListController: UITableViewDataSource {
       print("deleting..")
       // 1. remove item for the data model e.g events
       events.remove(at: indexPath.row) // remove event from events array
-      
+      deleteEvent(index: indexPath)
       // 2. update the table view
       tableView.deleteRows(at: [indexPath], with: .automatic)
     default:
