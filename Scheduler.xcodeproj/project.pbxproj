@@ -51,7 +51,6 @@
 				571258872385A81000805579 /* Assets.xcassets */,
 				571258892385A81000805579 /* LaunchScreen.storyboard */,
 				5712587E2385A80D00805579 /* AppDelegate.swift */,
-				5712588C2385A81000805579 /* Info.plist */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -88,6 +87,7 @@
 				571258822385A80D00805579 /* ScheduleListController.swift */,
 				571258922385AD0100805579 /* CreateEventController.swift */,
 				571258842385A80D00805579 /* Main.storyboard */,
+				5712588C2385A81000805579 /* Info.plist */,
 			);
 			path = Scheduler;
 			sourceTree = "<group>";
