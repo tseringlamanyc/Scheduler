@@ -40,10 +40,15 @@ class PersistenceHelper {
             throw DataPersistenceError.savingError(error)
         }
     }
+    
+    // for re-ordering
+     public static func reorderEvents(events: [Event]) {
+       self.events = events
+       try? save()
+     }
 
     // create - save item to document directory
-    static func save(item: Event) throws {
-        
+    static func create(item: Event) throws {
         // append
         events.append(item)
         
